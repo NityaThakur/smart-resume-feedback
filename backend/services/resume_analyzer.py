@@ -174,7 +174,8 @@ def analyze_resume_with_llm(resume_text: str, job_role: str) -> LLMResumeAnalysi
         "response_json_schema": LLMResumeAnalysis.model_json_schema(),
     }
 
-    models_to_try = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+    # models_to_try = ["gemini-2.5-flash", "gemini-2.0-flash", "gemini-1.5-flash"]
+    models_to_try = ["gemini-2.5-flash", "gemini-2.0-flash"]
     last_error: Exception | None = None
 
     for attempt in range(MAX_RETRIES + 1):

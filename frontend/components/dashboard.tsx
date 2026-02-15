@@ -46,12 +46,20 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
       "Summary:",
       analysis.summary,
       "",
-      strengths.length ? `Strengths:\n${strengths.map((s, i) => `${i + 1}. ${s}`).join("\n")}` : "",
-      analysis.skills_found.length ? `Skills Found: ${analysis.skills_found.join(", ")}` : "",
-      analysis.skills_missing.length ? `Skills to Add: ${analysis.skills_missing.join(", ")}` : "",
+      strengths.length
+        ? `Strengths:\n${strengths.map((s, i) => `${i + 1}. ${s}`).join("\n")}`
+        : "",
+      analysis.skills_found.length
+        ? `Skills Found: ${analysis.skills_found.join(", ")}`
+        : "",
+      analysis.skills_missing.length
+        ? `Skills to Add: ${analysis.skills_missing.join(", ")}`
+        : "",
       "",
       "Actionable Suggestions:",
-      analysis.actionable_suggestions.map((s, i) => `${i + 1}. ${s}`).join("\n"),
+      analysis.actionable_suggestions
+        .map((s, i) => `${i + 1}. ${s}`)
+        .join("\n"),
     ]
       .filter(Boolean)
       .join("\n");
@@ -70,7 +78,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
           </h2>
           <p className="text-gray-500 text-sm mt-1 flex items-center gap-2">
             <Gauge className="w-4 h-4 text-indigo-500" />
-            LLM-powered analysis with ATS optimization and domain-specific insights.
+            LLM-powered analysis with ATS optimization and domain-specific
+            insights.
           </p>
         </div>
         <div className="flex flex-wrap gap-2">
@@ -98,7 +107,7 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Score Gauges & Summary */}
         <div className="lg:col-span-1 space-y-6">
-          <div className="grid grid-cols-3 gap-3">
+          <div className="grid grid-cols-3 gap-3 text-center">
             <ScoreGauge score={atsScore} label="ATS" size="sm" />
             <ScoreGauge score={overallScore} label="Role Match" size="sm" />
             <ScoreGauge score={expScore} label="Experience" size="sm" />
@@ -186,7 +195,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
                   <div
                     key={i}
                     className={`p-3 rounded-xl border ${
-                      s.present ? "bg-green-50 border-green-200" : "bg-amber-50 border-amber-200"
+                      s.present
+                        ? "bg-green-50 border-green-200"
+                        : "bg-amber-50 border-amber-200"
                     }`}
                   >
                     <div className="flex items-center gap-2">
@@ -195,10 +206,14 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
                       ) : (
                         <XCircle className="w-4 h-4 text-amber-600" />
                       )}
-                      <span className="font-semibold text-gray-800">{s.section}</span>
+                      <span className="font-semibold text-gray-800">
+                        {s.section}
+                      </span>
                     </div>
                     {!s.present && s.recommendation && (
-                      <p className="text-xs text-gray-600 mt-1 ml-6">{s.recommendation}</p>
+                      <p className="text-xs text-gray-600 mt-1 ml-6">
+                        {s.recommendation}
+                      </p>
                     )}
                   </div>
                 ))}
@@ -224,7 +239,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
                   ))}
                   {analysis.skills_found.length === 0 && (
                     <p className="text-xs text-gray-400">
-                      No target-role keywords detected yet. Add specific tools and technologies.
+                      No target-role keywords detected yet. Add specific tools
+                      and technologies.
                     </p>
                   )}
                 </div>
@@ -262,7 +278,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
                 Domain Feature Comparison
               </h3>
               <p className="text-xs text-gray-500 mb-4">
-                How your resume compares to typical requirements for {analysis.target_role}:
+                How your resume compares to typical requirements for{" "}
+                {analysis.target_role}:
               </p>
               <div className="space-y-4">
                 {domainGaps.map((gap, i) => (
@@ -292,9 +309,13 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
                     </div>
                     <p className="text-xs text-gray-600 mt-1 flex items-center gap-1">
                       <AlertTriangle className="w-3 h-3 text-amber-500" />
-                      {gap.status === "missing" ? "Missing" : "Partially demonstrated"}
+                      {gap.status === "missing"
+                        ? "Missing"
+                        : "Partially demonstrated"}
                     </p>
-                    <p className="text-sm text-gray-700 mt-2">{gap.suggestion}</p>
+                    <p className="text-sm text-gray-700 mt-2">
+                      {gap.suggestion}
+                    </p>
                   </div>
                 ))}
               </div>
@@ -321,7 +342,8 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
                 ))}
                 {analysis.grammar_issues.length === 0 && (
                   <li className="text-sm text-gray-500">
-                    No grammar or clarity issues detected. Keep using concise bullets.
+                    No grammar or clarity issues detected. Keep using concise
+                    bullets.
                   </li>
                 )}
               </ul>
@@ -350,7 +372,9 @@ export const Dashboard: React.FC<DashboardProps> = ({ analysis, onReset }) => {
             <ul className="space-y-2">
               {analysis.ats_tips.map((tip, i) => (
                 <li key={i} className="text-sm text-gray-600 flex gap-2">
-                  <span className="text-indigo-500 font-semibold">{i + 1}.</span>
+                  <span className="text-indigo-500 font-semibold">
+                    {i + 1}.
+                  </span>
                   <span>{tip}</span>
                 </li>
               ))}
