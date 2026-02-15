@@ -296,7 +296,7 @@ export default function Page() {
                 {loadingState === LoadingState.LOADING ? (
                   <>
                     <Loader2 className="animate-spin w-5 h-5" />
-                    <span>Analyzing with AI… (15–30 sec)</span>
+                    <span>Analyzing...</span>
                   </>
                 ) : (
                   "Start Expert Analysis"
